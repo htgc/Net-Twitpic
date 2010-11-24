@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use Carp;
 
-use version; our $VERSION = qv('0.0.3');
+use version; our $VERSION = qv('0.0.4');
 
 use Digest::HMAC_SHA1 qw/hmac_sha1/;
 use WWW::Curl::Easy;
@@ -67,7 +67,7 @@ sub _get_signature {
 	return $hmac->b64digest . '%3D';
 }
 
-sub post {
+sub upload {
 	my $self = shift;
 	my %args = @_;
 	my $message = $args{message} || '';
@@ -118,7 +118,7 @@ Net::Twitpic - [Twitpic upload module using APIv2]
 
 =head1 VERSION
 
-This document describes Net::Twitpic version 0.0.1
+This document describes Net::Twitpic version 0.0.4
 
 
 =head1 SYNOPSIS
@@ -133,7 +133,7 @@ This document describes Net::Twitpic version 0.0.1
         api_key          => 'TWITPIC-API-KEY'
     );
 
-    my $response = $twitpic->post(
+    my $response = $twitpic->upload(
         message  => 'Hello',
         media    => '/file/to/path'
     );
